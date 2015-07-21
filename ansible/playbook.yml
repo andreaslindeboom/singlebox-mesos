@@ -1,0 +1,6 @@
+---
+- hosts: singlebox-mesos
+  gather_facts: no
+  remote_user: root
+  roles:
+    - users

@@ -1,0 +1,20 @@
+---
+- name: create remote user
+  user: name={{ remote_user }} shell=/bin/bash state=present
+
+- name: add public key to remote user
+  authorized_key: user="{{ remote_user }}" key="{{ local_public_key }}"
+
+- name: remove sudo group rights
+  action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent
+
+- name: add deploy user to sudoers
+  action: "lineinfile dest=/etc/sudoers regexp='deploy ALL' line='deploy ALL=(ALL) NOPASSWD: ALL' state=present"
+
+- name: disallow root SSH access
+  action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+  notify: restart sshd
+
+- name: disallow password authentication
+  action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+  notify: restart sshd
