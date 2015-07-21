@@ -1,6 +1,22 @@
 ---
+# As we prevent root access in the 'users' roles, this playbook would only run once.
+# For this reason, we restore root access again in order to be able to play it again.
+# This is quite an ugly hack!
+- hosts: singlebox-mesos
+  gather_facts: no
+  sudo: yes
+  remote_user: "{{ remote_user }}"
+  roles:
+    - root_restore
+
 - hosts: singlebox-mesos
   gather_facts: no
   remote_user: root
   roles:
     - users
+
+#- hosts: singlebox-mesos
+#  gather_facts: no
+#  remote_user: "{{ remote_user }}"
+#  roles:
+#    - docker
