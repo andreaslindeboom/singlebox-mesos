@@ -1,0 +1,12 @@
+---
+- name: grab Docker install script
+  get_url: url=https://get.docker.com/ dest=~/docker.sh
+
+- name: install Docker
+  shell: sh docker.sh
+
+- name: clean up Docker install script
+  file: path=~/docker.sh state=absent
+
+- name: add specified remote user to docker group
+  user: name={{remote_user}} groups=docker append=yes

@@ -15,8 +15,9 @@
   roles:
     - users
 
-#- hosts: singlebox-mesos
-#  gather_facts: no
-#  remote_user: "{{ remote_user }}"
-#  roles:
-#    - docker
+- hosts: singlebox-mesos
+  gather_facts: no
+  sudo: yes
+  remote_user: "{{ remote_user }}"
+  roles:
+    - docker
