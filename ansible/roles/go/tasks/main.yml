@@ -1,6 +1,0 @@
----
-- name: Install Go
-  docker:
-    name: golang
-    image: library/golang
-    state: present
