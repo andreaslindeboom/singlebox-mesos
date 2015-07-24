@@ -8,5 +8,3 @@
 - name: install Docker
   apt: name=docker-engine state=present update_cache=yes
 
-- name: add specified remote user to docker group
-  user: name={{remote_user}} groups=docker append=yes

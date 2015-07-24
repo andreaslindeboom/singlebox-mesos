@@ -1,4 +1,0 @@
----
-- name: restore root SSH access
-  action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin yes" state=present
-  notify: restart sshd

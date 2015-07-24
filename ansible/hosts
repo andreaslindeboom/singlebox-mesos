@@ -2,5 +2,3 @@
 188.166.107.31
 
 [singlebox-mesos:vars]
-remote_user = deploy
-local_public_key = {{ lookup('file', '~/.ssh/id_rsa.pub') }}
