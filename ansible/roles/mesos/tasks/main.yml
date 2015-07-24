@@ -1,0 +1,16 @@
+---
+- name: ensure master node is running
+  docker:
+    name: mesos-master
+    image: andreaslindeboom/mesos-master
+    ports: 5050:5050
+    state: present
+
+- name: ensure slave node is running
+  docker:
+    name: mesos-slave
+    image: andreaslindeboom/mesos-slave
+    links:
+    - "mesos-master"
+    state: present
+

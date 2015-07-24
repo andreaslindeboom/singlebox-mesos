@@ -1,0 +1,10 @@
+---
+- name: Install Python
+  apt: name=python state=present
+
+- name: Install pip
+  apt: name=python-pip state=present
+
+- name: Install Docker-py
+  pip: name=docker-py version=1.2.2
+
